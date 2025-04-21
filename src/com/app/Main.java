@@ -5,13 +5,12 @@
 package com.app;
 
 
+
 /**
  *
  * @author samsu
  */
 public class Main {
     
-    public static void main(String[] args) {
-        
-    }
+   
 }
