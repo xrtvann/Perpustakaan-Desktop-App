@@ -11,10 +11,6 @@ import javax.swing.Icon;
  * @author samsu
  */
 public class ModelMenu {
-    
-    Icon icon;
-    String menuName;
-    String subMenu;
 
     public Icon getIcon() {
         return icon;
@@ -32,24 +28,28 @@ public class ModelMenu {
         this.menuName = menuName;
     }
 
-    public String getSubMenu() {
+    public String[] getSubMenu() {
         return subMenu;
     }
 
-    public void setSubMenu(String subMenu) {
+    public void setSubMenu(String[] subMenu) {
         this.subMenu = subMenu;
     }
-    
 
-    public ModelMenu(Icon icon, String menuName, String subMenu) {
+    public ModelMenu(Icon icon, String menuName, String... subMenu) {
         this.icon = icon;
         this.menuName = menuName;
         this.subMenu = subMenu;
     }
     
+    
+    
     public ModelMenu() {
         
     }
     
-    
+    Icon icon;
+    String menuName;
+    String subMenu[];
+
 }
