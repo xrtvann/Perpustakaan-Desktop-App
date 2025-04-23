@@ -16,17 +16,21 @@ public class MenuButton {
     public MenuButton(Icon icon, String menuName){
         
     }
+    
+    public MenuButton(String text, boolean menu) {
+        
+    }
 
     public MenuButton(String st) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
     public void addActionListener(ActionListener actionListener) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
     
     private void add(MenuButton firstItem) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
     }
-    
+
 }

@@ -4,17 +4,97 @@
  */
 package com.view.components;
 
+import com.formdev.flatlaf.util.Animator;
+import com.util.EventMenu;
+import com.util.EventMenuSelected;
+import java.awt.Color;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import com.util.ScrollBarCustom;
+import com.view.model.ModelMenu;
+import com.view.swing.MenuAnimation;
+import com.view.swing.MenuItem;
+import java.awt.Component;
+import javax.swing.ImageIcon;
+import net.miginfocom.swing.MigLayout;
+
 /**
  *
  * @author samsu
  */
 public class Menu extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Menu
-     */
+    
+    private final MigLayout layout;
+    private final Animator animator;
+    private EventMenuSelected event;
+    private boolean enableMenu = true;
+    private boolean showMenu = true;
+
+
+    
+    public void addEvent(EventMenuSelected event) {
+        this.event = event;
+    }
+
+    public void setEnableMenu(boolean enableMenu) {
+        this.enableMenu = enableMenu;
+    }
+
+ 
+
+    public void setShowMenu(boolean showMenu) {
+        this.showMenu = showMenu;
+    }
+    
+    private void initMenuItem() {
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource(""))));
+    }
+    
+    private void addMenu(ModelMenu menu) {
+        panel.add(new MenuItem(menu, getEventMenu(), event, panel.getComponentCount()), "h 40!");
+    }
+     
+    private EventMenu getEventMenu() {
+        return new EventMenu() {
+            @Override
+            public boolean menuPressed(Component com, boolean open) {
+                if (enableMenu) {
+                    if (showMenu) {
+                        if (open) {
+                            new MenuAnimation(layout, com).openMenu();
+                        } else {
+                            new MenuAnimation(layout, com).closeMenu();
+                        }
+                        return true;
+                    } else {
+                        System.out.println("Show Popup menu ( Menu is Closed )");
+                    }
+                }
+                return false;
+            }
+        };
+    }
+    
     public Menu() {
         initComponents();
+        setOpaque(false);
+        sp.getViewport().setOpaque(false);
+        sp.getVerticalScrollBar(new ScrollBarCustom());
+        layout = new MigLayout("wrap, fillx, insets 0", "[fill]", "[]0[]");
+        panel.setLayout(layout);
+    }
+    
+    @Override
+    protected void paintComponent(Graphics grpchs) {
+        Graphics2D g2 = (Graphics2D) grpchs;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        GradientPaint gra = new GradientPaint(0, 0, new Color(33, 105, 249), getWidth(), 0, new Color(93, 58, 196));
+        g2.setPaint(gra);
+        g2.fillRect(0, 0, getWidth(), getHeight());
+        super.paintComponent(grpchs);
     }
 
     /**
@@ -26,21 +106,49 @@ public class Menu extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(99, 204, 204));
+        sp = new javax.swing.JScrollPane();
+        panel = new javax.swing.JPanel();
+        profile1 = new com.view.components.Profile();
+
+        sp.setBorder(null);
+        sp.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        panel.setOpaque(false);
+
+        javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
+        panel.setLayout(panelLayout);
+        panelLayout.setHorizontalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panelLayout.setVerticalGroup(
+            panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 524, Short.MAX_VALUE)
+        );
+
+        sp.setViewportView(panel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 230, Short.MAX_VALUE)
+            .addComponent(sp)
+            .addComponent(profile1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(profile1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+    
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel panel;
+    private com.view.components.Profile profile1;
+    private javax.swing.JScrollPane sp;
     // End of variables declaration//GEN-END:variables
 }

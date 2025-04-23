@@ -4,6 +4,7 @@
  */
 package com.view.dashboard;
 
+import com.util.EventMenuSelected;
 import com.view.components.Header;
 import com.view.components.Menu;
 import com.view.form.MainForm;
@@ -33,6 +34,12 @@ public class Main extends javax.swing.JFrame {
         menu = new Menu();
         header = new Header();
         main = new MainForm();
+        menu.addEvent(new EventMenuSelected() {
+            @Override
+            public void MenuSelected(int menuIndex, int subMenuIndex) {
+                System.out.println("Menu Index : " + menuIndex + " SubMenu Index : " + subMenuIndex);
+            }
+        });
         bg.add(menu, "w 230!, spany 2");
         bg.add(header, "h 50!, wrap");
         bg.add(main, "w 100%, h 100%");

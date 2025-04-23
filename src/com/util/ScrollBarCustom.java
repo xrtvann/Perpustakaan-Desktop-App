@@ -4,15 +4,11 @@
  */
 package com.util;
 
-import java.awt.Component;
-
 /**
  *
  * @author samsu
  */
-public interface EventMenu {
-    
-    public boolean menuPressed(Component com, boolean open);
-    
-    
+public interface ScrollBarCustom {
+
+   
 }
