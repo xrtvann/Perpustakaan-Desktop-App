@@ -6,12 +6,18 @@ package com.view.swing;
 
 import java.awt.event.ActionListener;
 import javax.swing.Icon;
+import javax.swing.JButton;
 
 /**
  *
  * @author samsu
  */
-public class MenuButton {
+public class MenuButton extends JButton{
+
+   
+    
+    private  int index;
+    
     
     public MenuButton(Icon icon, String menuName){
         
@@ -24,13 +30,14 @@ public class MenuButton {
     public MenuButton(String st) {
         
     }
-
-    public void addActionListener(ActionListener actionListener) {
-        
-    }
     
-    private void add(MenuButton firstItem) {
-       
+     public int getIndex() {
+        return index;
     }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
 
 }

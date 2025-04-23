@@ -46,6 +46,7 @@ public class MenuAnimation {
                     menuItem.setAlpha(1f - fraction);
                 }
                 
+                float eased = 1 - (float)Math.pow(1 - fraction, 2);
                 layout.setComponentConstraints(menuItem, "h " + h + "!");
                 component.revalidate();
                 component.repaint();
@@ -55,6 +56,7 @@ public class MenuAnimation {
         
         animator = new Animator(duration, target);
         animator.setResolution(0);
+        
     }
     
     public void openMenu() {

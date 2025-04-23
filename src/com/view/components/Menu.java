@@ -4,7 +4,6 @@
  */
 package com.view.components;
 
-import com.formdev.flatlaf.util.Animator;
 import com.util.EventMenu;
 import com.util.EventMenuSelected;
 import java.awt.Color;
@@ -28,7 +27,6 @@ public class Menu extends javax.swing.JPanel {
 
     
     private final MigLayout layout;
-    private final Animator animator;
     private EventMenuSelected event;
     private boolean enableMenu = true;
     private boolean showMenu = true;
@@ -49,8 +47,8 @@ public class Menu extends javax.swing.JPanel {
         this.showMenu = showMenu;
     }
     
-    private void initMenuItem() {
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource(""))));
+    public void initMenuItem() {
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("")), "Dashboard"));
     }
     
     private void addMenu(ModelMenu menu) {
@@ -80,9 +78,10 @@ public class Menu extends javax.swing.JPanel {
     
     public Menu() {
         initComponents();
+    
         setOpaque(false);
         sp.getViewport().setOpaque(false);
-        sp.getVerticalScrollBar(new ScrollBarCustom());
+        sp.setVerticalScrollBar(new ScrollBarCustom());
         layout = new MigLayout("wrap, fillx, insets 0", "[fill]", "[]0[]");
         panel.setLayout(layout);
     }
@@ -139,7 +138,7 @@ public class Menu extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(profile1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(sp, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents

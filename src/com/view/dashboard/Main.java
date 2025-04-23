@@ -8,6 +8,7 @@ import com.util.EventMenuSelected;
 import com.view.components.Header;
 import com.view.components.Menu;
 import com.view.form.MainForm;
+import javax.swing.JFrame;
 import net.miginfocom.swing.MigLayout;
 
 
@@ -26,6 +27,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         init();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     private void init() {
@@ -40,6 +42,7 @@ public class Main extends javax.swing.JFrame {
                 System.out.println("Menu Index : " + menuIndex + " SubMenu Index : " + subMenuIndex);
             }
         });
+        menu.initMenuItem();
         bg.add(menu, "w 230!, spany 2");
         bg.add(header, "h 50!, wrap");
         bg.add(main, "w 100%, h 100%");
